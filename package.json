@@ -1,18 +1,19 @@
 {
   "name": "@flypapertech/awsenv",
-  "version": "1.0.0",
-  "description": "Load environment from aws secrets manager",
+  "version": "1.0.1",
+  "description": "Loads environment from aws secrets manager",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.flypaper.com:products/awsenv.git"
+    "url": "git@github.com:flypapertech/awsenv.git"
   },
   "keywords": [
     "aws",
-    "env"
+    "env",
+    "secrets manager"
   ],
   "author": "Nick Fredricks",
   "license": "MIT",
