@@ -53,7 +53,7 @@ export function loadSecretsIntoEnv(secrets: {[key:string]: string}): void {
     for (const key in secrets) {
         // only load secret if it isn't loaded already
         if (!process.env[key]) {
-            const secret = secrets[key].trim()
+            const secret =  typeof secrets[key] ===  'string' ? secrets[key].trim() : secrets[key]
             if (secret === "false" || secret === "False" || secret === "FALSE")
                 // @ts-ignore ignoring since typescript complains about putting a boolean in env
                 process.env[key] = false
