@@ -19,5 +19,9 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "2.x"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "typescript": "4.9.3"
   }
 }
