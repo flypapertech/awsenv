@@ -51,7 +51,7 @@ As early as possible in your application, require and configure awsenv.
 require('@flypapertech/awsenv').config('someSecretName', 'optionalAWSRegion')
 ```
 
-`process.env` now has the keys and values you defined in your `.env` file.
+`process.env` now has the keys and values you defined in your AWS Secret.
 
 ```javascript
 const db = require('db')
@@ -102,11 +102,3 @@ errorReporter.client.report(new Error('faq example'))
 1. Preload awsenv: `AWSENV_SECRET_NAME=someSecretName node -r @flypapertech/awsenv/config index.js` (_Note: you do not need to `import` awsenv with this approach_)
 2. Import `@flypapertech/awsenv/config` instead of `@flypapertech/awsenv` (_Note: you do not need to call `awsenv.config()` and must pass options via environment variables with this approach_)
 3. Create a separate file that will execute `config` first.
-
-## Contributing Guide
-
-Comming soon!
-
-## Change Log
-
-See [CHANGELOG.md](CHANGELOG.md)
