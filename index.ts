@@ -1,5 +1,4 @@
-
-import { SecretsManager } from "aws-sdk"
+import { SecretsManagerClient, GetSecretValueCommand } from "@aws-sdk/client-secrets-manager";
 
 /**
  * Gets a secret object from AWS secret manager
@@ -9,10 +8,11 @@ import { SecretsManager } from "aws-sdk"
  */
 export async function getSecretObject(secretName: string, region?: string): Promise<{ [key: string]: string }> {
     const config = (region) ? {region} : {}
-    const client = new SecretsManager(config)
+    const client = new SecretsManagerClient(config)
 
     try {
-        const data = await client.getSecretValue({ SecretId: secretName }).promise()
+        const getSecret = new GetSecretValueCommand({SecretId: secretName});
+        const data = await client.send(getSecret)
         if (data.SecretString) return JSON.parse(data.SecretString)
         else return Promise.reject("Secret is binary, should you be asking for a binary secret?")
     } catch (err) {
@@ -27,12 +27,11 @@ export async function getSecretObject(secretName: string, region?: string): Prom
  * @param region the region the secret is in
  */
 export async function getBinarySecretString(secretName: string, region: string): Promise<string> {
-    const client = new SecretsManager({
-        region: region
-    })
+    const client = new SecretsManagerClient({region: region})
 
     try {
-        const data = await client.getSecretValue({ SecretId: secretName }).promise()
+        const getSecret = new GetSecretValueCommand({SecretId: secretName});
+        const data = await client.send(getSecret)
         if (data.SecretBinary && typeof data.SecretBinary === "string") {
             const buff = Buffer.from(data.SecretBinary, "base64")
             return buff.toString("ascii")

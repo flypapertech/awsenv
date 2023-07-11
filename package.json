@@ -18,7 +18,7 @@
   "author": "Nick Fredricks",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "2.x"
+    "@aws-sdk/client-secrets-manager": "^3.369.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
